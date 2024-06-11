@@ -27,9 +27,26 @@ public class CustomerController {
     }
 
     @GetMapping
-    public String listCustomers(Model model) {
-        List<Customer> customers = customerService.getAllCustomers();
+    public String listCustomers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String phone,
+            @RequestParam(required = false) Boolean emailPref,
+            @RequestParam(required = false) Boolean smsPref,
+            @RequestParam(required = false) Boolean promotionalPref,
+            @RequestParam(required = false) String sort,
+            @RequestParam(required = false) String order,
+            Model model) {
+        List<Customer> customers = customerService.getCustomers(name, email, phone, emailPref, smsPref, promotionalPref, sort, order);
         model.addAttribute("customers", customers);
+        model.addAttribute("name", name);
+        model.addAttribute("email", email);
+        model.addAttribute("phone", phone);
+        model.addAttribute("emailPref", emailPref);
+        model.addAttribute("smsPref", smsPref);
+        model.addAttribute("promotionalPref", promotionalPref);
+        model.addAttribute("sort", sort);
+        model.addAttribute("order", order);
         return "customers";
     }
 

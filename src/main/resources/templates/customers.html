@@ -2,19 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Manage Customers</title>
-  <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="~{fragments/header.html :: header}"></div>
 <div class="container mt-4">
   <h1 class="text-center">Manage Customers</h1>
+
+  <!-- Search Form -->
+  <form th:action="@{/admin/customers}" method="get" class="form-inline mb-4">
+    <input type="text" name="name" class="form-control mr-sm-2" placeholder="Name" th:value="${name}">
+    <input type="text" name="email" class="form-control mr-sm-2" placeholder="Email" th:value="${email}">
+    <input type="text" name="phone" class="form-control mr-sm-2" placeholder="Phone" th:value="${phone}">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="emailPref" th:checked="${emailPref}" id="emailPref">
+      <label class="form-check-label" for="emailPref">Email</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="smsPref" th:checked="${smsPref}" id="smsPref">
+      <label class="form-check-label" for="smsPref">SMS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="promotionalPref" th:checked="${promotionalPref}" id="promotionalPref">
+      <label class="form-check-label" for="promotionalPref">Promotional</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
   <a class="btn btn-primary mb-2" th:href="@{/admin/customers/new}">Add New Customer</a>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th>
+        <a th:href="@{/admin/customers(sort='name', order=${sort == 'name' and order == 'asc' ? 'desc' : 'asc'})}">Name</a>
+      </th>
+      <th>
+        <a th:href="@{/admin/customers(sort='email', order=${sort == 'email' and order == 'asc' ? 'desc' : 'asc'})}">Email</a>
+      </th>
       <th>Phone</th>
       <th>Notification Preferences</th>
       <th>Actions</th>
