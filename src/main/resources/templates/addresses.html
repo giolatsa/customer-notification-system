@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Addresses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+<div class="container mt-4">
+    <h1 class="text-center">Manage Addresses for <span th:text="${customer.name}"></span></h1>
+    <a class="btn btn-primary mb-2" th:href="@{/admin/customers/{id}/addresses/new(id=${customer.id})}">Add New Address</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address : ${addresses}">
+            <td th:text="${address.addressType.name()}"></td>
+            <td th:text="${address.value}"></td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/admin/customers/{customerId}/addresses/delete/{id}(customerId=${customer.id},id=${address.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

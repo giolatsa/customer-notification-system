@@ -16,6 +16,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
+      <th>Notification Preferences</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -25,8 +26,15 @@
       <td th:text="${customer.email}"></td>
       <td th:text="${customer.phone}"></td>
       <td>
+        <ul>
+          <li th:each="preference : ${customer.preferences}" th:text="${preference.notificationType.name()} + ': ' + (${preference.optedIn} ? 'Opted In' : 'Opted Out')"></li>
+        </ul>
+      </td>
+      <td>
         <a class="btn btn-secondary btn-sm" th:href="@{/admin/customers/edit/{id}(id=${customer.id})}">Edit</a>
         <a class="btn btn-danger btn-sm" th:href="@{/admin/customers/delete/{id}(id=${customer.id})}">Delete</a>
+        <a class="btn btn-info btn-sm" th:href="@{/admin/customers/{id}/addresses(id=${customer.id})}">Manage Addresses</a>
+        <a class="btn btn-warning btn-sm" th:href="@{/admin/customers/{id}/preferences(id=${customer.id})}">Manage Preferences</a>
       </td>
     </tr>
     </tbody>

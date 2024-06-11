@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Manage Preferences</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+<div class="container mt-4">
+  <h1 class="text-center">Manage Preferences for <span th:text="${customer.name}"></span></h1>
+  <form th:action="@{/admin/customers/{id}/preferences/save(id=${customer.id})}" method="post" class="form-horizontal">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Notification Type</th>
+        <th>Subscribed</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="notificationType : ${notificationTypes}">
+        <td th:text="${notificationType}"></td>
+        <td>
+          <input type="checkbox" th:name="${notificationType.name()}"
+                 th:checked="${preferences[notificationType.name()]}" />
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-1">
+        <button type="submit" class="btn btn-primary">Save Preferences</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
