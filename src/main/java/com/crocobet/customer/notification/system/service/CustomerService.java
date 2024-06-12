@@ -1,11 +1,13 @@
 package com.crocobet.customer.notification.system.service;
 
 import com.crocobet.customer.notification.system.model.Customer;
+import com.crocobet.customer.notification.system.model.CustomerDTO;
 import com.crocobet.customer.notification.system.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -79,6 +81,21 @@ public class CustomerService {
 
         return findCustomersWithCriteria(queryBuilder.toString());
     }
+
+    @Transactional
+    public void updateCustomersBatch(List<CustomerDTO> customers) {
+        List<Customer> customerList=customers.stream()
+                .map(customerDTO -> Customer.builder()
+                        .id(customerDTO.getId())
+                        .name(customerDTO.getName())
+                        .email(customerDTO.getEmail())
+                        .phone(customerDTO.getPhone())
+                        .build())
+                .toList();
+
+        customerRepository.saveAll(customerList);
+    }
+
 
     private List<Customer> findCustomersWithCriteria(String query) {
         Query q = entityManager.createQuery(query, Customer.class);
