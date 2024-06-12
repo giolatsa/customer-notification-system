@@ -1,5 +1,6 @@
 package com.crocobet.customer.notification.system.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,7 @@ public class Preference {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
