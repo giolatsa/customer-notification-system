@@ -1,4 +1,4 @@
-package com.crocobet.customer.notification.system.controller;
+package com.crocobet.customer.notification.system.controller.mvc;
 
 import com.crocobet.customer.notification.system.model.User;
 import com.crocobet.customer.notification.system.service.UserService;
