@@ -61,13 +61,13 @@ public class CustomerService {
             queryBuilder.append(" AND LOWER(c.phone) LIKE LOWER('%").append(phone).append("%')");
         }
         if (emailPref != null && emailPref) {
-            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.EMAIL AND p.optedIn = TRUE)");
+            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.EMAIL AND p.opted = TRUE)");
         }
         if (smsPref != null && smsPref) {
-            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.SMS AND p.optedIn = TRUE)");
+            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.SMS AND p.opted = TRUE)");
         }
         if (promotionalPref != null && promotionalPref) {
-            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.PROMOTIONAL AND p.optedIn = TRUE)");
+            queryBuilder.append(" AND EXISTS (SELECT p FROM Preference p WHERE p.customer = c AND p.notificationType = NotificationType.PROMOTIONAL AND p.opted = TRUE)");
         }
 
         if (sort != null && !sort.isEmpty()) {
