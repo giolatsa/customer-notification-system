@@ -19,7 +19,6 @@
         </li>
       </ul>
       <form th:action="@{/logout}" method="post" class="form-inline ml-auto">
-        <input type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <button type="submit" class="btn btn-outline-danger">Logout</button>
       </form>
     </div>
