@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS preferences (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(id),
     notification_type VARCHAR(50) NOT NULL,
-    opted_in BOOLEAN NOT NULL
+    opted BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS notifications (
