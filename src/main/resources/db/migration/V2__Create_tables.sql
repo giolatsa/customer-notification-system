@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS customers (
 CREATE TABLE IF NOT EXISTS addresses (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(id) ON DELETE CASCADE,
-    address_type VARCHAR(50) NOT NULL,
+    address_type INT NOT NULL,
     value VARCHAR(255) NOT NULL
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS addresses (
 CREATE TABLE IF NOT EXISTS preferences (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(id) ON DELETE CASCADE,
-    notification_type VARCHAR(50) NOT NULL,
+    notification_type INT NOT NULL,
     opted BOOLEAN NOT NULL
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS preferences (
 CREATE TABLE IF NOT EXISTS notifications (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(id) ON DELETE CASCADE,
-    notification_type VARCHAR(50) NOT NULL,
-    status VARCHAR(50) NOT NULL,
+    notification_type INT NOT NULL,
+    status INT NOT NULL,
     timestamp TIMESTAMP NOT NULL
 );
 
