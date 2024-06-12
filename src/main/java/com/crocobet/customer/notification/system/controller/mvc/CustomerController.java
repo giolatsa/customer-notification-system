@@ -102,6 +102,7 @@ public class CustomerController {
     public String saveAddress(@PathVariable Long id, @ModelAttribute Address address) {
         Customer customer = customerService.getCustomerById(id);
         address.setCustomer(customer);
+        address.setId(null);
         addressService.saveAddress(address);
         return "redirect:/admin/customers/" + id + "/addresses";
     }
