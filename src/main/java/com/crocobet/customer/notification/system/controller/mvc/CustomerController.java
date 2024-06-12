@@ -121,7 +121,7 @@ public class CustomerController {
             preferenceMap.put(type.name(), false);
         }
         for (Preference preference : preferences) {
-            preferenceMap.put(preference.getNotificationType().name(), preference.isOptedIn());
+            preferenceMap.put(preference.getNotificationType().name(), preference.isOpted());
         }
         model.addAttribute("customer", customer);
         model.addAttribute("preferences", preferenceMap);
@@ -154,7 +154,7 @@ public class CustomerController {
                 preference.setCustomer(customer);
                 preference.setNotificationType(type);
             }
-            preference.setOptedIn(optedIn);
+            preference.setOpted(optedIn);
             preferenceService.savePreference(preference);
         }
 

@@ -24,6 +24,6 @@ public class Preference {
     private Customer customer;
 
     private NotificationType notificationType;
-    private boolean optedIn;
+    private boolean opted;
 
 }

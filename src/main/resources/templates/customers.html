@@ -51,7 +51,7 @@
       <td th:text="${customer.phone}"></td>
       <td>
         <ul>
-          <li th:each="preference : ${customer.preferences}" th:text="${preference.notificationType.name()} + ': ' + (${preference.optedIn} ? 'Opted In' : 'Opted Out')"></li>
+          <li th:each="preference : ${customer.preferences}" th:text="${preference.notificationType.name()} + ': ' + (${preference.isOpted} ? 'Opted In' : 'Opted Out')"></li>
         </ul>
       </td>
       <td>
