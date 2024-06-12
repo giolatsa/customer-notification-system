@@ -53,8 +53,8 @@ spring.datasource.password=test123
 Use Maven to build and run the application:
 
 ```sh
-mvn clean install
-mvn spring-boot:run
+mvnw clean install
+mvnw spring-boot:run
 ```
 
 ### Step 5: Access the Application
@@ -63,5 +63,5 @@ mvn spring-boot:run
 - Username: admin
 - Password: admin123
 
-The application should now be running at `http://localhost:8080`. Access the Swagger UI for API documentation at `http://localhost:8080/swagger-ui.html`.
+The application should now be running at `http://localhost:8080`. Access the Swagger UI for API documentation at `http://localhost:8080/swagger-ui`.
 
